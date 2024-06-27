@@ -1,3 +1,4 @@
+// Comisión Lisandro - Blanco Macarena, Mercado Camila
 let CapamanchaG, CapamanchaN, Capalineas, Capafondo;
 let fondo; // Variable para la imagen de fondo
 let cant = 5;
