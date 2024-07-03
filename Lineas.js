@@ -54,6 +54,7 @@ class Linea {
      capa.tint(255, this.opacidad); // Aplicar opacidad
      capa.image(this.img, -this.w / 2, -this.h / 2, this.w, this.h);
      capa.pop();
+
     }
-   }
+}
    
