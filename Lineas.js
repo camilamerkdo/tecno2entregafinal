@@ -35,7 +35,7 @@ class Linea {
    
     aparecer() {
      if (this.opacidad < 255) {
-      this.opacidad += 15; // Aumentar velocidad de opacidad
+      this.opacidad += 30; // Aumentar velocidad de opacidad
       if (this.opacidad >= 255) {
        this.apareciendo = false; // Dejar de aparecer al alcanzar opacidad máxima
       }
