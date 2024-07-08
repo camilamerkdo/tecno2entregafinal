@@ -321,17 +321,15 @@ function setup() {
 }
 
 function inicializarManchasG() {
-  let marginLeft = -30; // 30 píxeles fuera del canvas por el lado izquierdo
-  let marginRight = 300; // Margen derecho dentro del canvas
-  let marginTop = 0; // Margen superior dentro del canvas
-  let marginBottom = 100; // Margen inferior dentro del canvas
+  let marginRight = 60; // 60 píxeles del lado derecho
+  let marginBottom = 30; // 30 píxeles del lado inferior
 
   for (let i = 0; i < limiteImagenes; i++) {
     let idx = floor(random(cant));
     let w = random(250, 350); // Ancho entre 250 y 350
     let h = random(250, 350); // Alto entre 250 y 350
-    let x = random(marginLeft, width - marginRight);
-    let y = random(marginTop, height - marginBottom);
+    let x = random(0, width - marginRight); // Posición x aleatoria con margen derecho
+    let y = random(0, height - marginBottom); // Posición y aleatoria con margen inferior
     let velocidad = 0; // Sin rotación
 
     // Nueva manchaG con parametros generados aleatoriamente
@@ -422,28 +420,23 @@ function actualizarCapa(tiempoTranscurrido) {
 }
 
 function manejarAparicionManchas(manchas, ClaseMancha, imagenes, minSize, maxSize) {
-  // Definir márgenes
-  const marginRight = 20; // Márgen derecho de 20 píxeles
-  const marginBottom = 20; // Márgen inferior de 20 píxeles
-
   if (haySonido && !antesHabiaSonido && manchas.length < limiteImagenes) {
-    const i = floor(random(cant));
-    const w = random(minSize, maxSize);
-    const h = random(minSize, maxSize);
-    const x = random(0, width - marginRight - w); // Coordenada x ajustada
-    const y = random(0, height - marginBottom - h); // Coordenada y ajustada
-    const velocidad = random(0.05, 0.25); // Velocidades más lentas
-
-    const nuevaMancha = new ClaseMancha(imagenes[i], x, y, w, h, velocidad);
-    nuevaMancha.rotacionInicial = random(TWO_PI); // Asignar rotación inicial aleatoria
+    let i = floor(random(cant));
+    let w = random(minSize, maxSize);
+    let h = random(minSize, maxSize);
+    let marginRight = 0; // 30 px del lado derecho
+    let marginBottom = 0; // 30 px de abajo
+    let x = random(0, width - w - marginRight); // Posición x aleatoria con margen derecho
+    let y = random(0, height - h - marginBottom); // Posición y aleatoria con margen abajo
+    let velocidad = random(0.05, 0.25); // Velocidades
+    let nuevaMancha = new ClaseMancha(imagenes[i], x, y, w, h, velocidad);
+    nuevaMancha.rotacionInicial = random(TWO_PI); // Rotación inicial aleatoria
     nuevaMancha.apareciendo = true; // Marcar como apareciendo
     nuevaMancha.opacidad = 0; // Empezar con opacidad 0
     nuevaMancha.tiempoCreacion = millis(); // Registrar el tiempo de creación
-
-    manchas.push(nuevaMancha); // Agregar mancha al arreglo de manchas
+    manchas.push(nuevaMancha);
   }
 }
-
 
 function manejarRotacionUltimaMancha(manchas) {
   if (manchas.length > 0) {
